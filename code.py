@@ -4,3 +4,4 @@ for i in range(len(sn)):
         for f in range(len(groups)):
         if !inGroup:
             ahaha
+            yep
