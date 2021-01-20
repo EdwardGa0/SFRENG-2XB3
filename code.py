@@ -1,15 +1,10 @@
 def are_valid_groups(sn, groups):
-for i in range(len(sn)):
-        inGroup = False
-        for f in range(len(groups)):
-            if len(groups[j]) != 2 and len(groups[j]) != 3:
+    for s in sn:
+        count = 0
+        for g in groups:
+            if len(g) != 2 or len(g) != 3:
                 return False
-	    for k in range(len(groups[j])):
-            if sn[i] == groups[j][k]:
-                    inGroup = True
-                    break
-            if inGroup:
-                break
-        if !inGroup:
-            print("hello payer ;\)")
+            count += g.count(s)
+        if count != 1:
+            return False
     return True
