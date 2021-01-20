@@ -1,6 +1,6 @@
-def are_valid_groups(students, groups):
-    for student in students:
+def are_valid_groups(nums, groups):
+    for num in nums:
         for group in groups:
-            if student not in group:
+            if num not in group:
                 return False
     return True
