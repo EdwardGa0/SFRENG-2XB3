@@ -1,4 +1,3 @@
-
 def are_valid_groups(sn, groups):
     for i in range(len(sn)):
         inGroup = False
