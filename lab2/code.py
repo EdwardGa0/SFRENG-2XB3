@@ -14,6 +14,15 @@ def appendTest():
 
 
 def lookupsTest():
-    return
+    size = 1000000
+    l = []
+    for i in range(size):
+        l.append(i)
 
-appendTest()
+    times = []
+    for i in range(size):
+        start = timeit.default_timer()
+        l[i]
+        diff = timeit.default_timer() - start
+        times.append(diff)
+
