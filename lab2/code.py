@@ -3,4 +3,9 @@ def appendTest():
     return
 
 def lookupsTest():
-    return
+    size = 1000000
+    l = []
+    for i in range(size):
+        l.append(i)
+
+    return l
