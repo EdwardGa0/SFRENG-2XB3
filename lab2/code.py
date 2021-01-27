@@ -5,3 +5,6 @@ def appendTest():
     start = timeit.default_timer()
     for i in range(1000000):
         arr.append(33)
+
+def lookupsTest():
+    return
