@@ -11,7 +11,7 @@ def copy(n):
     print(end-start)
 
 def main():
-    for i in range(100000,1000000,10000):
+    for i in range(100000,10000000,100000):
         print(i, end="    ")
         copy(i)
 
