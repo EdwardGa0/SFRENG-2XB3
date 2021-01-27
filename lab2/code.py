@@ -1,4 +1,5 @@
 import timeit
+import csv
 
 def appendTest():
     arr = []
@@ -12,10 +13,12 @@ def lookupsTest():
     for i in range(size):
         l.append(i)
 
-    times = []
-    for i in range(size):
-        start = timeit.default_timer()
-        l[i]
-        diff = timeit.default_timer() - start
-        times.append(diff)
+    with open('../../lookups_times.csv', mode='w', newline='') as f:
+        writer = csv.writer(f, delimiter=',')
+        for i in range(size):
+            start = timeit.default_timer()
+            l[i]
+            diff = timeit.default_timer() - start
+            writer.writerow([i, diff])
+lookupsTest()
 
