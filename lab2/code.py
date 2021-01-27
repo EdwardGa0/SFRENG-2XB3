@@ -18,7 +18,7 @@ def lookupsTest():
     size = 1000000
     l = []
     for i in range(size):
-        l.append(i)
+        l.append(0)
 
     with open('../../lookups_times.csv', mode='w', newline='') as f:
         writer = csv.writer(f, delimiter=',')
@@ -27,5 +27,4 @@ def lookupsTest():
             l[i]
             diff = timeit.default_timer() - start
             writer.writerow([i, diff])
-lookupsTest()
 
