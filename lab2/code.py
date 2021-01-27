@@ -12,4 +12,10 @@ def lookupsTest():
     for i in range(size):
         l.append(i)
 
-    return l
+    times = []
+    for i in range(size):
+        start = timeit.default_timer()
+        l[i]
+        diff = timeit.default_timer() - start
+        times.append(diff)
+
