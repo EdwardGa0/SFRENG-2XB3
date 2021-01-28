@@ -30,7 +30,14 @@ def appendTest():
     f1.close()
     f2.close()
     
-
+def appendTest2():
+    arr = []
+    for i in range(1000000):
+        arr.append(33)
+    start = timeit.default_timer()
+    arr.append(9223372036854775808)
+    end = timeit.default_timer()
+    print(end - start)
 
 
 
@@ -47,5 +54,3 @@ def lookupsTest():
             l[i]
             diff = timeit.default_timer() - start
             writer.writerow([i, diff])
-
-appendTest()
