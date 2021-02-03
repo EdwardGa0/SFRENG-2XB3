@@ -7,22 +7,25 @@ def dual_pivot_quicksort(L):
 
 # tri pivot
 def tri_pivot_quicksort(L):
-    copy = mp_quicksort_copy(L, 3)
+    copy = tri_quicksort_copy(L)
     for i in range(len(L)):
         L[i] = copy[i]
 
 # quad pivot
 def quad_pivot_quicksort(L):
-    copy = mp_quicksort_copy(L, 4)
+    copy = quad_quicksort_copy(L)
     for i in range(len(L)):
         L[i] = copy[i]
         
-# test dual
+# dual helper
 def dual_quicksort_copy(L):
     if len(L) < 2:
         return L
     p1 = min(L[0], L[1])
     p2 = max(L[0], L[1])
+    if len(L) < 3:
+        return [p1, p2]
+
     l1, l2, l3 = [], [], []
 
     for num in L[2:]:
@@ -34,7 +37,70 @@ def dual_quicksort_copy(L):
             l3.append(num)
     return dual_quicksort_copy(l1) + [p1] + dual_quicksort_copy(l2) + [p2] + dual_quicksort_copy(l3)
 
-# helper function
+# tri helper
+def tri_quicksort_copy(L):
+    if len(L) < 2:
+        return L
+    elif len(L) < 3:
+        return [min(L[0], L[1]), max(L[0], L[1])]
+    s = L[0] + L[1] + L[2]
+    p1 = min(L[0], L[1], L[2])
+    p3 = max(L[0], L[1], L[2])
+    p2 = s - p1 - p3
+    l1, l2, l3, l4 = [], [], [], []
+
+    for num in L[3:]:
+        if num < p1:
+            l1.append(num)
+        elif num < p2:
+            l2.append(num)
+        elif num < p3:
+            l3.append(num)
+        else:
+            l4.append(num)
+    output = tri_quicksort_copy(l1) + [p1] + tri_quicksort_copy(l2) + [p2]
+    output += tri_quicksort_copy(l3) + [p3] + tri_quicksort_copy(l4)
+    return output
+
+# quad helper
+def quad_quicksort_copy(L):
+    if len(L) < 2:
+        return L
+    elif len(L) < 3:
+        return [min(L[0], L[1]), max(L[0], L[1])]
+    elif len(L) < 4:
+        s = L[0] + L[1] + L[2]
+        p1 = min(L[0], L[1], L[2])
+        p3 = max(L[0], L[1], L[2])
+        p2 = s - p1 - p3
+        return [p1, p2, p3]
+
+    min1 = min(L[0], L[1])
+    max1 = max(L[0], L[1])
+    min2 = min(L[2], L[3])
+    max2 = max(L[2], L[3])
+    p1 = min(min1, min2)
+    p4 = max(max1, max2)
+    p2 = min(min1 + min2 - p1, max1 + max2 - p4)
+    p3 = max(min1 + min2 - p1, max1 + max2 - p4)
+    l1, l2, l3, l4, l5 = [], [], [], [], []
+
+    for num in L[4:]:
+        if num < p1:
+            l1.append(num)
+        elif num < p2:
+            l2.append(num)
+        elif num < p3:
+            l3.append(num)
+        elif num < p4:
+            l4.append(num)
+        else:
+            l5.append(num)
+    output = quad_quicksort_copy(l1) + [p1] + quad_quicksort_copy(l2) + [p2]
+    output += quad_quicksort_copy(l3) + [p3] + quad_quicksort_copy(l4) + [p4] + quad_quicksort_copy(l5)
+    return output
+
+# dynamic function for any number of pivots
 def mp_quicksort_copy(L, p):
     if len(L) < 2:
         return L
@@ -64,17 +130,17 @@ a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
 b = [1]
 c = []
 d = [1,2,3,4,5,6]
-e = [3,2]
+e = [3,2,1]
 
-dual_pivot_quicksort(a)
+quad_pivot_quicksort(a)
 print(a)
-dual_pivot_quicksort(b)
+quad_pivot_quicksort(b)
 print(b)
-dual_pivot_quicksort(c)
+quad_pivot_quicksort(c)
 print(c)
-dual_pivot_quicksort(d)
+quad_pivot_quicksort(b)
 print(d)
-dual_pivot_quicksort(e)
+quad_pivot_quicksort(b)
 print(e)
 
 #inplace quick sort
