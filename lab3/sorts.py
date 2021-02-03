@@ -36,15 +36,15 @@ def quicksort_inplace(l, lo, hi): #lo starts at 0, hi is len(l)-1
 def partition(l, lo, hi):
     pivot = l[hi] #pivot is always at the end.
 
-    small = lo - 1 #position where smaller values will be placed
+    small = lo #position where smaller values will be placed
 
     for element in range(lo, hi): #not including hi (pivot)
         if l[element] < pivot:
-            small += 1
             l[small], l[element] = l[element], l[small]
+	    small += 1
 
-    l[small+1], l[hi] = l[hi], l[small+1] #put pivot on the right spot
-    return small+1
+    l[small], l[hi] = l[hi], l[small] #put pivot on the right spot
+    return small
 
 #inplace sort test
 lst = []
