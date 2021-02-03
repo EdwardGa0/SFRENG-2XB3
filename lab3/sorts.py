@@ -1,3 +1,4 @@
+import random
 # dual pivot
 def dual_pivot_quicksort(L):
     copy = mp_quicksort_copy(L, 2)
@@ -58,3 +59,35 @@ dual_pivot_quicksort(d)
 print(d)
 dual_pivot_quicksort(e)
 print(e)
+
+#inplace quick sort
+def quicksort_inplace(l, lo, hi): #lo starts at 0, hi is len(l)-1
+    if hi <= lo: #base case
+        return 
+
+    pivot = partition(l, lo, hi) #does the sorting. 
+    #returns the right position of the pivot value.
+
+    quicksort_inplace(l, lo, pivot-1) #sort left elements
+    quicksort_inplace(l, pivot+1, hi) #sort right elements
+    
+def partition(l, lo, hi):
+    pivot = l[hi] #pivot is always at the end.
+
+    small = lo #position where smaller values will be placed
+
+    for element in range(lo, hi): #not including hi (pivot)
+        if l[element] < pivot:
+            l[small], l[element] = l[element], l[small]
+            small += 1
+
+    l[small], l[hi] = l[hi], l[small] #put pivot on the right spot
+    return small
+
+#inplace sort test
+lst = []
+for i in range(30):
+    lst.append(random.randint(0,50))
+print(lst)
+quicksort_inplace(lst, 0, len(lst)-1)
+print(lst)
