@@ -17,14 +17,27 @@ def main():
 
 def appendTest():
     arr = []
-    f = open('./append.txt', 'w')
+    f1 = open('./append.txt', 'w')
+    f2 = open('./append2.txt', 'w')
     time_sum = 0
     for i in range(1000000):
         start = timeit.default_timer()
         arr.append(33)
         end = timeit.default_timer()
         time_sum += end - start
-        f.write(str(i) + ', ' + str(time_sum) + '\n')
+        f1.write(str(i) + ', ' + str(time_sum) + '\n')
+        f2.write(str(i) + ', ' + str(end - start) + '\n')
+    f1.close()
+    f2.close()
+    
+def appendTest2():
+    arr = []
+    for i in range(1000000):
+        arr.append(33)
+    start = timeit.default_timer()
+    arr.append(9223372036854775808)
+    end = timeit.default_timer()
+    print(end - start)
 
 
 
@@ -41,4 +54,3 @@ def lookupsTest():
             l[i]
             diff = timeit.default_timer() - start
             writer.writerow([i, diff])
-
