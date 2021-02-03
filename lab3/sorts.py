@@ -128,22 +128,6 @@ def mp_quicksort_copy(L, p):
     finalSorted += mp_quicksort_copy(subarrays[p], p)
     return finalSorted
 
-a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
-b = [1]
-c = []
-d = [1,2,3,4,5,6]
-e = [3,2,1]
-
-quad_pivot_quicksort(a)
-print(a)
-quad_pivot_quicksort(b)
-print(b)
-quad_pivot_quicksort(c)
-print(c)
-quad_pivot_quicksort(b)
-print(d)
-quad_pivot_quicksort(b)
-print(e)
 
 #inplace quick sort
 
@@ -173,10 +157,30 @@ def partition(l, lo, hi):
     l[small], l[hi] = l[hi], l[small] #put pivot on the right spot
     return small
 
-#inplace sort test
-lst = []
-for i in range(30):
-    lst.append(random.randint(0,50))
-print(lst)
-quicksort_inplace(lst)
-print(lst)
+
+if __name__ == "__main__":
+    #multiple pivots test
+    a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
+    b = [1]
+    c = []
+    d = [1,2,3,4,5,6]
+    e = [3,2,1]
+
+    quad_pivot_quicksort(a)
+    print(a)
+    quad_pivot_quicksort(b)
+    print(b)
+    quad_pivot_quicksort(c)
+    print(c)
+    quad_pivot_quicksort(b)
+    print(d)
+    quad_pivot_quicksort(b)
+    print(e)
+
+    #inplace sort test
+    lst = []
+    for i in range(30):
+        lst.append(random.randint(0,50))
+    print(lst)
+    quicksort_inplace(lst)
+    print(lst)
