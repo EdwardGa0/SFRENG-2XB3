@@ -1,4 +1,7 @@
 import random
+import timeit
+from lab3 import *
+
 # dual pivot
 def dual_pivot_quicksort(L):
     copy = mp_quicksort_copy(L, 2)
@@ -60,8 +63,38 @@ print(d)
 dual_pivot_quicksort(e)
 print(e)
 
+def timing_tests():
+    f = open('./append.txt', 'w')
+    rand_lst = create_random_list(10000)
+    for i in range(100, 10000, 100):
+        res = []
+        start = timeit.default_timer()
+        my_quicksort(rand_lst[:i])
+        end = timeit.default_timer()
+        res.append(end - start)
+
+        start = timeit.default_timer()
+        dual_pivot_quicksort(rand_lst[:i])
+        end = timeit.default_timer()
+        res.append(end - start)
+
+        start = timeit.default_timer()
+        tri_pivot_quicksort(rand_lst[:i])
+        end = timeit.default_timer()
+        res.append(end - start)
+
+        start = timeit.default_timer()
+        quad_pivot_quicksort(rand_lst[:i])
+        end = timeit.default_timer()
+        res.append(end - start)
+
+        f.write(str(i) + ', ' + ','.join(map(str, res)) + '\n')
+    f.close()
+
+timing_tests()
+
+
 #inplace quick sort
-import random
 
 def quicksort_inplace(l):
     quicksort_helper(l, 0, len(l)-1)
