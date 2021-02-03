@@ -147,7 +147,7 @@ quad_pivot_quicksort(b)
 print(e)
 
 def timing_tests():
-    f = open('./best_sort.txt', 'w')
+    f = open('./lab3/best_sort.txt', 'w')
     rand_lst = create_random_list(10000)
     for i in range(100, 10000, 100):
         res = []
@@ -175,13 +175,16 @@ def timing_tests():
     f.close()
 
 def timing_tests_worstcase():
-    f = open('./worst_case.txt', 'w')
+    f = open('./lab3/worst_case.txt', 'w')
     for i in range(0, 101):
-        lst = create_near_sorted_list(1000, i/100)
-        start = timeit.default_timer()
-        dual_pivot_quicksort(lst)
-        end = timeit.default_timer()
-        f.write(str(i) + ', ' + str(end-start) + '\n')
+        avg = []
+        for _ in range(100):
+            lst = create_near_sorted_list(1000, i/100)
+            start = timeit.default_timer()
+            tri_pivot_quicksort(lst)
+            end = timeit.default_timer()
+            avg.append(end-start)
+        f.write(str(i/100) + ', ' + str(sum(avg)/len(avg)) + '\n')
     f.close()
 
 #timing_tests()
