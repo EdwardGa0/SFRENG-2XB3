@@ -128,6 +128,44 @@ def mp_quicksort_copy(L, p):
     finalSorted += mp_quicksort_copy(subarrays[p], p)
     return finalSorted
 
+# elementary sorts
+def bubble_sort(L):
+    for i in range(len(L) - 1):
+        for j in range(len(L) - i - 1):
+            if L[j + 1] < L[j]:
+                L[j], L[j + 1] = L[j + 1], L[j]
+
+def selection_sort(L):
+    for i in range(len(L)):
+        m = i
+        for j in range(i + 1, len(L)):
+            if L[j] < L[m]:
+                m = j
+        L[i], L[m] = L[m], L[i]
+
+def insertion_sort(L):
+    for i in range(1, len(L)):
+        j = i
+        while j > 0 and L[j] < L[j - 1]:
+            L[j], L[j - 1] = L[j - 1], L[j]
+            j -= 1
+
+a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
+b = [1]
+c = []
+d = [1,2,3,4,5,6]
+e = [3,2,1]
+
+insertion_sort(a)
+insertion_sort(b)
+insertion_sort(c)
+insertion_sort(d)
+insertion_sort(e)
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
 
 #inplace quick sort
 
