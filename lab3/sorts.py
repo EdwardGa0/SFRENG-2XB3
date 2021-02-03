@@ -61,15 +61,20 @@ dual_pivot_quicksort(e)
 print(e)
 
 #inplace quick sort
-def quicksort_inplace(l, lo, hi): #lo starts at 0, hi is len(l)-1
+import random
+
+def quicksort_inplace(l):
+    quicksort_helper(l, 0, len(l)-1)
+
+def quicksort_helper(l, lo, hi):
     if hi <= lo: #base case
         return 
 
     pivot = partition(l, lo, hi) #does the sorting. 
     #returns the right position of the pivot value.
 
-    quicksort_inplace(l, lo, pivot-1) #sort left elements
-    quicksort_inplace(l, pivot+1, hi) #sort right elements
+    quicksort_helper(l, lo, pivot-1) #sort left elements
+    quicksort_helper(l, pivot+1, hi) #sort right elements
     
 def partition(l, lo, hi):
     pivot = l[hi] #pivot is always at the end.
@@ -89,5 +94,5 @@ lst = []
 for i in range(30):
     lst.append(random.randint(0,50))
 print(lst)
-quicksort_inplace(lst, 0, len(lst)-1)
+quicksort_inplace(lst)
 print(lst)
