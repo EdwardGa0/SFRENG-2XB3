@@ -1,7 +1,7 @@
 import random
 # dual pivot
 def dual_pivot_quicksort(L):
-    copy = mp_quicksort_copy(L, 2)
+    copy = dual_quicksort_copy(L)
     for i in range(len(L)):
         L[i] = copy[i]
 
@@ -16,6 +16,23 @@ def quad_pivot_quicksort(L):
     copy = mp_quicksort_copy(L, 4)
     for i in range(len(L)):
         L[i] = copy[i]
+        
+# test dual
+def dual_quicksort_copy(L):
+    if len(L) < 2:
+        return L
+    p1 = min(L[0], L[1])
+    p2 = max(L[0], L[1])
+    l1, l2, l3 = [], [], []
+
+    for num in L[2:]:
+        if num < p1:
+            l1.append(num)
+        elif num < p2:
+            l2.append(num)
+        else:
+            l3.append(num)
+    return dual_quicksort_copy(l1) + [p1] + dual_quicksort_copy(l2) + [p2] + dual_quicksort_copy(l3)
 
 # helper function
 def mp_quicksort_copy(L, p):
