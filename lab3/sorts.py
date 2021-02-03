@@ -81,7 +81,7 @@ dual_pivot_quicksort(e)
 print(e)
 
 def timing_tests():
-    f = open('./append.txt', 'w')
+    f = open('./best_sort.txt', 'w')
     rand_lst = create_random_list(10000)
     for i in range(100, 10000, 100):
         res = []
@@ -108,7 +108,18 @@ def timing_tests():
         f.write(str(i) + ', ' + ','.join(map(str, res)) + '\n')
     f.close()
 
-timing_tests()
+def timing_tests_worstcase():
+    f = open('./worst_case.txt', 'w')
+    for i in range(0, 101):
+        lst = create_near_sorted_list(1000, i/100)
+        start = timeit.default_timer()
+        dual_pivot_quicksort(lst)
+        end = timeit.default_timer()
+        f.write(str(i) + ', ' + str(end-start) + '\n')
+    f.close()
+
+#timing_tests()
+timing_tests_worstcase()
 
 
 #inplace quick sort
