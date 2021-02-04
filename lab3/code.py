@@ -83,3 +83,34 @@ def timing_tests_small_lists():
 #timing_tests()
 #timing_tests_worstcase()
 timing_tests_small_lists()
+
+def test_helper(n):
+    total = 0
+    for i in range(25):
+        ls = create_random_list(n)
+        start = timeit.default_timer()
+        tri_pivot_quicksort(ls)
+        end = timeit.default_timer()
+        total += end - start
+    print(total/25)
+
+def runner():
+    for i in range(1000,10001,50):
+        print(i, end=" ")
+        test_helper(i)
+
+runner()
+
+def worst_case_test_helper(n):
+    ls = create_near_sorted_list(n, 0)
+    start = timeit.default_timer()
+    tri_pivot_quicksort(ls)
+    end = timeit.default_timer()
+    print(end-start)
+
+def runner2():
+    for i in range(1000,10001,500):
+        print(i, end=" ")
+        worst_case_test_helper(i)
+
+runner2()
