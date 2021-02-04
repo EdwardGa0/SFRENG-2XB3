@@ -131,9 +131,13 @@ def mp_quicksort_copy(L, p):
 # elementary sorts
 def bubble_sort(L):
     for i in range(len(L) - 1):
+        swapped = False
         for j in range(len(L) - i - 1):
             if L[j + 1] < L[j]:
+                swapped = True
                 L[j], L[j + 1] = L[j + 1], L[j]
+        if not swapped:
+            break
 
 def selection_sort(L):
     for i in range(len(L)):
