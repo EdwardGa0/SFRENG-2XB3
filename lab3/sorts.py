@@ -154,22 +154,11 @@ def insertion_sort(L):
             L[j], L[j - 1] = L[j - 1], L[j]
             j -= 1
 
-a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
-b = [1]
-c = []
-d = [1,2,3,4,5,6]
-e = [3,2,1]
-
-insertion_sort(a)
-insertion_sort(b)
-insertion_sort(c)
-insertion_sort(d)
-insertion_sort(e)
-print(a)
-print(b)
-print(c)
-print(d)
-print(e)
+def final_sort(L):
+    if len(L) < 13:
+        insertion_sort(L)
+    else:
+        tri_pivot_quicksort(L)
 
 #inplace quick sort
 
@@ -199,30 +188,3 @@ def partition(l, lo, hi):
     l[small], l[hi] = l[hi], l[small] #put pivot on the right spot
     return small
 
-
-if __name__ == "__main__":
-    #multiple pivots test
-    a = [4,1,4,5,6,7,2,3,4,1,5,5,3,1,7,8,8,5]
-    b = [1]
-    c = []
-    d = [1,2,3,4,5,6]
-    e = [3,2,1]
-
-    quad_pivot_quicksort(a)
-    print(a)
-    quad_pivot_quicksort(b)
-    print(b)
-    quad_pivot_quicksort(c)
-    print(c)
-    quad_pivot_quicksort(b)
-    print(d)
-    quad_pivot_quicksort(b)
-    print(e)
-
-    #inplace sort test
-    lst = []
-    for i in range(30):
-        lst.append(random.randint(0,50))
-    print(lst)
-    quicksort_inplace(lst)
-    print(lst)
