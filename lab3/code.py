@@ -99,7 +99,7 @@ def runner():
         print(i, end=" ")
         test_helper(i)
 
-runner()
+#runner()
 
 def worst_case_test_helper(n):
     ls = create_near_sorted_list(n, 0)
@@ -113,4 +113,4 @@ def runner2():
         print(i, end=" ")
         worst_case_test_helper(i)
 
-runner2()
+#runner2()
