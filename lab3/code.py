@@ -43,5 +43,43 @@ def timing_tests_worstcase():
         f.write(str(i/100) + ', ' + str(sum(avg)/len(avg)) + '\n')
     f.close()
 
+def timing_tests_small_lists():
+    f = open('./small_lists.txt', 'w')
+    for j in range(0, 21):
+        q = []
+        b = []
+        i = []
+        s = []
+        for _ in range(100):
+            l = create_random_list(j)
+            lst = l.copy()
+            start = timeit.default_timer()
+            tri_pivot_quicksort(lst)
+            end = timeit.default_timer()
+            q.append(end-start)
+
+            lst = l.copy()
+            start = timeit.default_timer()
+            bubble_sort(lst)
+            end = timeit.default_timer()
+            b.append(end-start)
+
+            lst = l.copy()
+            start = timeit.default_timer()
+            insertion_sort(lst)
+            end = timeit.default_timer()
+            i.append(end-start)
+            
+            lst = l.copy()
+            start = timeit.default_timer()
+            selection_sort(lst)
+            end = timeit.default_timer()
+            s.append(end-start)
+        out = str(j) + ', ' + str(sum(q)/len(q)) + ', ' + str(sum(b)/len(b)) + ', ' 
+        out += str(sum(i)/len(i)) + ', ' + str(sum(s)/len(s)) + '\n' 
+        f.write(out)
+    f.close()
+
 #timing_tests()
-timing_tests_worstcase()
+#timing_tests_worstcase()
+timing_tests_small_lists()
