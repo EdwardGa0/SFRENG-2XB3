@@ -44,23 +44,7 @@ def timing_tests_worstcase():
     f.close()
 
 #timing_tests()
-timing_tests_worstcase()
-
-
-def create_random_list(n):
-    L = []
-    for _ in range(n):
-        L.append(random.randint(1,n))
-    return L
-
-def create_near_sorted_list(n, factor):
-    L = create_random_list(n)
-    L.sort()
-    for _ in range(math.ceil(n*factor)):
-        index1 = random.randint(0, n-1)
-        index2 = random.randint(0, n-1)
-        L[index1], L[index2] = L[index2], L[index1]
-    return L
+#timing_tests_worstcase()
 
 def test_helper(n):
     total = 0
@@ -77,7 +61,7 @@ def runner():
         print(i, end=" ")
         test_helper(i)
 
-runner()
+#runner()
 
 def worst_case_test_helper(n):
     ls = create_near_sorted_list(n, 0)
@@ -87,7 +71,7 @@ def worst_case_test_helper(n):
     print(end-start)
 
 def runner2():
-    for i in range(1000,10001,500):
+    for i in range(100,10001,100):
         print(i, end=" ")
         worst_case_test_helper(i)
 
