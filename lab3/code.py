@@ -43,6 +43,30 @@ def timing_tests_worstcase():
         f.write(str(i/100) + ', ' + str(sum(avg)/len(avg)) + '\n')
     f.close()
 
+def time_individual(i, sort_func):
+    avg = []
+    for _ in range(50):
+        lst = create_near_sorted_list(1000, i/100)
+        start = timeit.default_timer()
+        sort_func(lst)
+        end = timeit.default_timer()
+        avg.append(end-start)
+    return sum(avg)/len(avg)
+
+def timing_tests_worstcase_comparison():
+    f = open('./lab3/worst_case.txt', 'w')
+    for i in range(0, 101, 5):
+        print(i, end=' ')
+        res = []
+        res.append(time_individual(i, tri_pivot_quicksort))
+        res.append(time_individual(i, bubble_sort))
+        res.append(time_individual(i, selection_sort))
+        res.append(time_individual(i, insertion_sort))
+        f.write(str(i/100) + ', ' + ','.join(map(str, res)) + '\n')
+    f.close()
+
+timing_tests_worstcase_comparison()
+
 def timing_tests_small_lists():
     f = open('./small_lists.txt', 'w')
     for j in range(0, 21):
@@ -80,9 +104,7 @@ def timing_tests_small_lists():
         f.write(out)
     f.close()
 
-#timing_tests()
-#timing_tests_worstcase()
-timing_tests_small_lists()
+#timing_tests_small_lists()
 
 def test_helper(n):
     total = 0
