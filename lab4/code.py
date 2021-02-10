@@ -65,7 +65,7 @@ def timing_tests_worstcase_comparison():
         f.write(str(i/100) + ', ' + ','.join(map(str, res)) + '\n')
     f.close()
 
-timing_tests_worstcase()
+#timing_tests_worstcase()
 
 #for bottom-up vs top-down comparison
 def create_random_list(n):
@@ -89,4 +89,21 @@ def runner():
         print(i, end=" ")
         test_helper(i)
 
-runner()
+#runner()
+
+#three way comparison
+def three_way_test():
+    for i in range(1000, 10000, 1000):
+        L1 = create_random_list(i)
+        L2 = L1.copy()
+        start = timeit.default_timer()
+        mergesort_bottom(L1)
+        end = timeit.default_timer()
+        t1 = end - start
+        start = timeit.default_timer()
+        mergesort_three(L1)
+        end = timeit.default_timer()
+        t2 = end - start
+        print(t1, t2)
+
+three_way_test()
