@@ -66,3 +66,27 @@ def timing_tests_worstcase_comparison():
     f.close()
 
 timing_tests_worstcase()
+
+#for bottom-up vs top-down comparison
+def create_random_list(n):
+    L = []
+    for _ in range(n):
+        L.append(random.randint(1,n))
+    return L
+    
+def test_helper(n):
+    total = 0
+    for i in range(50):
+        ls = create_random_list(n)
+        start = timeit.default_timer()
+        mergesort_bottom(ls)
+        end = timeit.default_timer()
+        total += end - start
+    print(total/50)
+
+def runner():
+    for i in range(1000,10001,500):
+        print(i, end=" ")
+        test_helper(i)
+
+runner()
