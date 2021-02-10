@@ -33,26 +33,6 @@ def merge_bottom(L, start, mid, end):
             L[i] = temp[leftIndex]
             leftIndex += 1
 
-def merge_bottom_swap(L, start, mid, end):
-    #helper func. Merge interval start-end 
-    #assuming start-mid and mid-end are sorted.
-    leftIndex = 0
-    rightIndex = mid-start+1
-    
-    for i in range(start, end+1):
-        if(leftIndex+start > mid):
-            L[i] = temp[rightIndex]
-            rightIndex += 1
-        elif(rightIndex+start > end):
-            L[i] = temp[leftIndex]
-            leftIndex += 1
-        elif(temp[rightIndex] < temp[leftIndex]):
-            L[i] = temp[rightIndex]
-            rightIndex += 1
-        else:
-            L[i] = temp[leftIndex]
-            leftIndex += 1
-
 def mergesort_three(L):
     if len(L) <= 1:
         return 
