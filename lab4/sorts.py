@@ -33,6 +33,27 @@ def merge_bottom(L, start, mid, end):
             L[i] = temp[leftIndex]
             leftIndex += 1
 
+def merge_bottom_test(L, start, mid, end):
+    #helper func. Merge interval start-end 
+    #assuming start-mid and mid-end are sorted.
+    temp = L[start:end+1].copy()
+    leftIndex = start
+    rightIndex = mid+1
+    
+    for i in range(start, end+1):
+        if(leftIndex > mid):
+            L[i] = temp[rightIndex]
+            rightIndex += 1
+        elif(rightIndex > end):
+            L[i] = temp[leftIndex]
+            leftIndex += 1
+        elif(temp[rightIndex] < temp[leftIndex]):
+            L[i] = temp[rightIndex]
+            rightIndex += 1
+        else:
+            L[i] = temp[leftIndex]
+            leftIndex += 1
+
 def mergesort_three(L):
     if len(L) <= 1:
         return 
