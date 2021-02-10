@@ -33,7 +33,6 @@ def merge_bottom(L, start, mid, end):
             L[i] = temp[leftIndex]
             leftIndex += 1
 
-<<<<<<< HEAD
 def merge_bottom_test(L, start, mid, end):
     #helper func. Merge interval start-end 
     #assuming start-mid and mid-end are sorted.
