@@ -1,4 +1,5 @@
 import random
+from lab4 import merge
 
 def mergesort_bottom(L):
     #merges list L, whose len is not always power of 2
@@ -32,12 +33,41 @@ def merge_bottom(L, start, mid, end):
             L[i] = temp[leftIndex]
             leftIndex += 1
 
+def mergesort_three(L):
+    if len(L) <= 1:
+        return 
+    if len(L) == 2:
+        if L[1] < L[0]:
+            L[0], L[1] = L[1], L[0]
+            return L
+        else:
+            return L
+
+    lmid = len(L)//3
+    rmid = lmid*2
+    left, mid, right = L[:lmid], L[lmid:rmid], L[rmid:]
+
+    #Mergesort core
+    mergesort_three(left)
+    mergesort_three(mid)
+    mergesort_three(right)
+    temp = merge_three(left, mid, right)
+
+    #Copy the sorted list to L
+    for i in range(len(temp)):
+        L[i] = temp[i]
+
+def merge_three(left, mid, right):
+    return merge(merge(left, mid), right)
+
 def create_random_list(n):
     L = []
     for _ in range(n):
         L.append(random.randint(1,n))
     return L
     
-ls = create_random_list(10)
-mergesort_bottom(ls)
-print(ls)
+L = create_random_list(1000)
+after = L.copy()
+mergesort_three(after)
+if after != sorted(L):
+    print(after)
