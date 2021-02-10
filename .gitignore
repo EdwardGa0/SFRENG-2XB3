@@ -1,3 +1,8 @@
 lab3/__pycache__/sorts.cpython-39.pyc
 lab3/__pycache__/lab3.cpython-39.pyc
 lab3/worst_case.txt
+
+*.un~
+*.py~
+*.gitignore~
+__pycache__
