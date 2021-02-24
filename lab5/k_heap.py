@@ -59,7 +59,3 @@ class KHeap:
             if (i < self.length):
                 o += str(self.data[i]) + " "
         return o
-
-b = [-4,5,11111,7,23,5576,3,3,-123,54,11111111]
-a = KHeap(b, 5)
-print(a)
