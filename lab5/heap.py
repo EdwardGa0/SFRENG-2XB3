@@ -7,7 +7,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap1()
+        self.build_heap2()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -20,7 +20,29 @@ class Heap:
         self.insert_values(temp)
 
     def build_heap3(self):
-        #TODO
+        while not(self.is_heap(0)):
+            for i in range(self.length):
+                self.sink(i)
+
+    def is_heap(self, i):
+        #base case
+        if self.left(i) >= self.length and self.right(i) >= self.length:
+            return True
+        if self.left(i) < self.length and self.right(i) < self.length:
+            if self.data[self.left(i)] <= self.data[i] and self.data[self.right(i)] <= self.data[i]:
+                return self.is_heap(self.left(i)) and self.is_heap(self.right(i))
+            else:
+                return False
+        elif self.left(i) < self.length:
+            if self.data[self.left(i)] <= self.data[i]:
+                return self.is_heap(self.left(i))
+            else:
+                return False
+        else:
+            if self.data[self.right(i)] <= self.data[i]:
+                return self.is_heap(self.right(i))
+            else:
+                return False
 
     def sink(self, i):
         largest_known = i
