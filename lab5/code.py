@@ -14,5 +14,5 @@ def time_test(n, runs):
         total += timeit.default_timer() - start
     return total/runs
 
-for i in range(1000, 10000, 100):
-    print(i, time_test(i, 10))
+for i in range(10000, 100000, 10000):
+    print(i, time_test(i, 5))
