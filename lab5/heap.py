@@ -14,7 +14,10 @@ class Heap:
             self.sink(i)
 
     def build_heap2(self):
-        #TODO
+        temp = self.data.copy()
+        self.data = []
+        self.length = 0
+        self.insert_values(temp)
 
     def build_heap3(self):
         #TODO
