@@ -31,8 +31,6 @@ class Graph:
         return node2 in self.adj[node1]
 
     def adjacent_nodes(self, node):
-        return self.adj[node]
-
     def add_node(self):
         self.adj[len(self.adj)] = []
 
