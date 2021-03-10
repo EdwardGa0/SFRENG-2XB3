@@ -7,7 +7,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap2()
+        self.build_heap1()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
