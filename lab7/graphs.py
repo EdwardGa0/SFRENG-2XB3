@@ -61,6 +61,25 @@ def BFS2(G, node1, node2):
                 Q.append(new_path)
     return []
 
+def BSF3(G, node):
+    path = {}
+    Q = deque([node])
+    marked = {node : True}
+    for nodes in G.adj:
+        if nodes != node:
+            marked[nodes] = False
+    while len(Q) != 0:
+	current_node = Q.popleft()
+	for nodes in G.adj[current_node]:
+	    if not marked[nodes]:
+	        Q.append(nodes)
+		marked[nodes] = True
+		path[nodes] = current_node
+    return path
+
+
+
+
 # g = Graph(6)
 # g.add_edge(1,2)
 # g.add_edge(1,3)
@@ -71,4 +90,3 @@ def BFS2(G, node1, node2):
 # g.add_edge(4,6)
 
 # print(BFS2(g,1,5))
->>>>>>> a4078da330050f216b382fdf1f30cd6e3b2a18c1
