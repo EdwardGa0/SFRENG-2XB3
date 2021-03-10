@@ -1,17 +1,16 @@
 from collections import deque
 
 def DFS2(g, n1, n2):
-    vis = [False for _ in range(g.number_of_nodes())]
-    return DFS2recur(g, n1, n2, vis, [n1])
+    return DFS2recur(g, n1, n2, [False for _ in range(len(g.adj))], [n1])
 
 def DFS2recur(g, n1, n2, vis, l):
     if n1 == n2:
         return l
     o = []
-    if vis[n1] == False:
+    if not vis[n1]:
         vis[n1] = True
         for node in g.adj[n1]:
-            if vis[node] == False:
+            if not vis[node]:
                 l.append(node)
                 o = DFS2recur(g, node, n2, vis, l)
                 if len(o) > 0:
@@ -31,6 +30,8 @@ class Graph:
         return node2 in self.adj[node1]
 
     def adjacent_nodes(self, node):
+        return self.adj[node]
+
     def add_node(self):
         self.adj[len(self.adj)] = []
 
@@ -59,32 +60,48 @@ def BFS2(G, node1, node2):
                 Q.append(new_path)
     return []
 
-def BSF3(G, node):
-    path = {}
-    Q = deque([node])
-    marked = {node : True}
-    for nodes in G.adj:
-        if nodes != node:
-            marked[nodes] = False
-    while len(Q) != 0:
-	current_node = Q.popleft()
-	for nodes in G.adj[current_node]:
-	    if not marked[nodes]:
-	        Q.append(nodes)
-		marked[nodes] = True
-		path[nodes] = current_node
-    return path
+# def BSF3(G, node):
+#     path = {}
+#     Q = deque([node])
+#     marked = {node : True}
+#     for nodes in G.adj:
+#         if nodes != node:
+#             marked[nodes] = False
+#     while len(Q) != 0:
+# 	current_node = Q.popleft()
+# 	for nodes in G.adj[current_node]:
+# 	    if not marked[nodes]:
+# 	        Q.append(nodes)
+# 		marked[nodes] = True
+# 		path[nodes] = current_node
+#     return path
+
+def has_cycle(g):
+    for i in range(len(g.adj)):
+        s = [i]
+        vis = [False for _ in range(len(g.adj))]
+        while len(s) != 0:
+            cur = s.pop()
+            if not vis[cur]:
+                vis[cur] = True
+                c = 0
+                for node in g.adj[cur]:
+                    if vis[node]:
+                        c += 1
+                    else:
+                        s.append(node)
+                if c > 1:
+                    return True
+    return False
 
 
 
 
-# g = Graph(6)
-# g.add_edge(1,2)
-# g.add_edge(1,3)
-# g.add_edge(2,4)
-# g.add_edge(3,4)
-# g.add_edge(3,5)
-# g.add_edge(5,4)
-# g.add_edge(4,6)
-
-# print(BFS2(g,1,5))
+g = Graph(7)
+g.add_edge(1,2)
+g.add_edge(1,3)
+g.add_edge(2,4)
+g.add_edge(3,4)
+g.add_edge(3,5)
+g.add_edge(5,4)
+g.add_edge(4,6)
