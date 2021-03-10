@@ -23,7 +23,7 @@ class Graph:
 
     def __init__(self, n):
         self.adj = {}
-        for i in range(n + 1): # in case tests are conducted 0 or 1 indexed
+        for i in range(n):
             self.adj[i] = []
 
     def are_connected(self, node1, node2):
@@ -145,9 +145,9 @@ def BFS(G, node1, node2):
 
 #uses BFS
 def is_connected(G):
-    for node1 in range(1, len(G.adj) + 1):
-        for node2 in range(1, len(G.adj) + 1):
-            if BFS(G, node1, node2):
+    for node1 in range(len(G.adj)):
+        for node2 in range(len(G.adj)):
+            if node1 == node2 or BFS(G, node1, node2):
                 continue
             else:
                 return False
