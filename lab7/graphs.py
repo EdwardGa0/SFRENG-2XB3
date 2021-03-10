@@ -90,6 +90,37 @@ def BSF3(G, node):
 		path[nodes] = current_node
     return path
 
+
+
+def BFS(G, node1, node2):
+    Q = deque([node1])
+    marked = {node1 : True}
+    for node in G.adj:
+        if node != node1:
+            marked[node] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if node == node2:
+                return True
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+    return False
+
+#uses BFS
+def is_connected(G):
+    for node1 in range(1, len(G.adj) + 1):
+        for node2 in range(1, len(G.adj) + 1):
+            if BFS(G, node1, node2):
+                continue
+            else:
+                return False
+    return True
+
+
+
+
 # g = Graph(6)
 # g.add_edge(1,2)
 # g.add_edge(1,3)
