@@ -5,7 +5,7 @@ class Graph:
 
     def __init__(self, n):
         self.adj = {}
-        for i in range(n):
+        for i in range(n+1):
             self.adj[i] = []
 
     def are_connected(self, node1, node2):
@@ -24,3 +24,31 @@ class Graph:
 
     def number_of_nodes():
         return len()
+
+def BFS2(G, node1, node2):
+    Q = deque()
+    Q.append([node1])
+    visited = set()
+    while Q:
+        path = Q.popleft()
+        node = path[-1]
+        visited.add(node)
+        if node == node2:
+            return path
+        for adj in G.adj[node]:
+            if adj not in visited:
+                new_path = path.copy()
+                new_path.append(adj)
+                Q.append(new_path)
+    return []
+
+# g = Graph(6)
+# g.add_edge(1,2)
+# g.add_edge(1,3)
+# g.add_edge(2,4)
+# g.add_edge(3,4)
+# g.add_edge(3,5)
+# g.add_edge(5,4)
+# g.add_edge(4,6)
+
+# print(BFS2(g,1,5))
