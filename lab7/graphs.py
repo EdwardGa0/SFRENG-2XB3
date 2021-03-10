@@ -18,12 +18,12 @@ def DFS2recur(g, n1, n2, vis, l):
                 l.pop()
     return o
 
-#Undirected graph using an adjacency list
+# Undirected graph using an adjacency list
 class Graph:
 
     def __init__(self, n):
         self.adj = {}
-        for i in range(n+1):
+        for i in range(1, n+1):
             self.adj[i] = []
 
     def are_connected(self, node1, node2):
@@ -40,8 +40,8 @@ class Graph:
             self.adj[node1].append(node2)
             self.adj[node2].append(node1)
 
-    def number_of_nodes(self):
-        return len(self.adj)
+    def number_of_nodes():
+        return len()
 
 def BFS2(G, node1, node2):
     Q = deque()
@@ -94,14 +94,75 @@ def has_cycle(g):
                     return True
     return False
 
+def DFS3_rec(G, node, visited, pred):
+    visited.add(node)
+    for adj in G.adj[node]:
+        if adj not in visited:
+            pred[adj] = node
+            DFS3_rec(G, adj, visited, pred)
+
+
+def DFS3(G, start):
+    visited = set()
+    pred = {}
+    DFS3_rec(G, start, visited, pred)
+    return pred
+
+
+def BSF3(G, node):
+    path = {}
+    Q = deque([node])
+    marked = {node: True}
+    for nodes in G.adj:
+        if nodes != node:
+            marked[nodes] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for nodes in G.adj[current_node]:
+            if not marked[nodes]:
+                Q.append(nodes)
+                marked[nodes] = True
+                path[nodes] = current_node
+    return path
 
 
 
-g = Graph(7)
-g.add_edge(1,2)
-g.add_edge(1,3)
-g.add_edge(2,4)
-g.add_edge(3,4)
-g.add_edge(3,5)
-g.add_edge(5,4)
-g.add_edge(4,6)
+def BFS(G, node1, node2):
+    Q = deque([node1])
+    marked = {node1 : True}
+    for node in G.adj:
+        if node != node1:
+            marked[node] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if node == node2:
+                return True
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+    return False
+
+#uses BFS
+def is_connected(G):
+    for node1 in range(1, len(G.adj) + 1):
+        for node2 in range(1, len(G.adj) + 1):
+            if BFS(G, node1, node2):
+                continue
+            else:
+                return False
+    return True
+
+
+
+
+# g = Graph(6)
+# g.add_edge(1,2)
+# g.add_edge(1,3)
+# g.add_edge(2,4)
+# g.add_edge(3,4)
+# g.add_edge(3,5)
+# g.add_edge(5,4)
+# g.add_edge(4,6)
+
+# print(DFS3(g,1))
