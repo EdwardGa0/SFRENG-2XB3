@@ -53,9 +53,20 @@ def DFS(G, node1, node2):
     while len(S) != 0:
         current_node = S.pop()
         if not marked[current_node]:
+            print("printing cur")
+            print(current_node)
             marked[current_node] = True
             for node in G.adj[current_node]:
                 if node == node2:
                     return True
                 S.append(node)
     return False
+
+g = Graph(6)
+g.add_edge(0, 5)
+g.add_edge(0, 1)
+g.add_edge(1, 2)
+g.add_edge(2, 3)
+g.add_edge(2, 4)
+
+DFS(g, 0, 4)
