@@ -23,7 +23,7 @@ class Graph:
 
     def __init__(self, n):
         self.adj = {}
-        for i in range(1, n+1):
+        for i in range(n + 1): # in case tests are conducted 0 or 1 indexed
             self.adj[i] = []
 
     def are_connected(self, node1, node2):
@@ -156,13 +156,12 @@ def is_connected(G):
 
 
 
-# g = Graph(6)
-# g.add_edge(1,2)
-# g.add_edge(1,3)
-# g.add_edge(2,4)
-# g.add_edge(3,4)
-# g.add_edge(3,5)
-# g.add_edge(5,4)
-# g.add_edge(4,6)
+g = Graph(6)
+g.add_edge(1,2)
+g.add_edge(1,3)
+g.add_edge(2,4)
+g.add_edge(3,4)
+g.add_edge(4,6)
 
-# print(DFS3(g,1))
+print(DFS2(g,1,6))
+print(has_cycle(g))
