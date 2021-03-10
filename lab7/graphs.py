@@ -42,6 +42,19 @@ def BFS2(G, node1, node2):
                 Q.append(new_path)
     return []
 
+def DFS3_rec(G, node, visited, pred):
+    visited.add(node)
+    for adj in G.adj[node]:
+        if adj not in visited:
+            pred[adj] = node
+            DFS3_rec(G, adj, visited, pred)
+
+def DFS3(G, start):
+    visited = set()
+    pred = {}
+    DFS3_rec(G, start, visited, pred)
+    return pred
+
 # g = Graph(6)
 # g.add_edge(1,2)
 # g.add_edge(1,3)
@@ -51,4 +64,4 @@ def BFS2(G, node1, node2):
 # g.add_edge(5,4)
 # g.add_edge(4,6)
 
-# print(BFS2(g,1,5))
+# print(DFS3(g,1))
