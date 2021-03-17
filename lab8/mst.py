@@ -174,12 +174,14 @@ def prim2(G):
     for _ in range(n):
         u = heap.extract_min()
         visited[u.value] = True
+        added = False
         for v, w in G.adjacent_nodes(u.value):
             if not visited[v]:
                 heap.decrease_key(v, w)
-            elif u.key == G.w(u.value, v):
+            elif u.key == G.w(u.value, v) and not added:
                 # assuming all weights are unique
                 mst.add_edge(u.value, v, u.key)
+                added = True
     return mst
 
 
@@ -203,7 +205,6 @@ def create_random_connected_graph(n):
     for i in range(n):
         g.add_edge(i, i + 1, l.pop(random.randint(len(l))))
     return g
-
 
 
 # tests
