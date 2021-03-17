@@ -161,7 +161,24 @@ def prim1(G):
     return mst
 
 # prim 2
+def prim2(G):
+    n = G.number_of_nodes()
+    mst = WeightedGraph(n)
+    INF = 1e9
+    heap = MinHeap([Element(i, INF) for i in range(n)])
+    
+    visited = [False] * n
 
+    for _ in range(n):
+        u = heap.extract_min()
+        visited[u.value] = True
+        for v, w in G.adjacent_nodes(u.value):
+            if not visited[v]:
+                heap.decrease_key(v, w)
+            elif u.key == G.w(u.value, v):
+                # assuming all weights are unique
+                mst.add_edge(u.value, v, u.key)
+    return mst
 
 
 # prim vs prim
@@ -180,4 +197,4 @@ g.add_edge(0,5,3)
 g.add_edge(4,5,1)
 g.add_edge(3,5,9)
 
-print(prim1(g).adj)
+print(prim2(g).adj)
