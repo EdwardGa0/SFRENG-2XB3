@@ -52,7 +52,18 @@ def prim1(G):
 
     return mst
 
- = WeightedGraph(6)
+
+# prim 2
+
+
+
+# prim vs prim
+
+
+
+
+# tests
+g = WeightedGraph(6)
 g.add_edge(0,1,5)
 g.add_edge(0,2,6)
 g.add_edge(1,4,10)
