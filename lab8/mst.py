@@ -207,14 +207,23 @@ def create_random_connected_graph(n):
 
 
 # tests
-g = WeightedGraph(6)
-g.add_edge(0,1,5)
-g.add_edge(0,2,6)
-g.add_edge(1,4,10)
-g.add_edge(1,3,7)
-g.add_edge(1,2,4)
-g.add_edge(0,5,3)
-g.add_edge(4,5,1)
-g.add_edge(3,5,9)
+# g = WeightedGraph(6)
+# g.add_edge(0,1,5)
+# g.add_edge(0,2,6)
+# g.add_edge(1,4,10)
+# g.add_edge(1,3,7)
+# g.add_edge(1,2,4)
+# g.add_edge(0,5,3)
+# g.add_edge(4,5,1)
+# g.add_edge(3,5,9)
 
-print(prim2(g).adj)
+# print(prim2(g).adj)
+
+l = [(1, 3, 3), (1, 2, 6), (2, 3, 4), (1, 5, 9), (3, 5, 9), (3, 6, 9), (5, 6, 8),
+(3, 4, 2), (4, 2, 2), (4, 6, 8), (4, 7, 9), (2, 7, 9), (6, 7, 7), (7, 8, 4),
+(6, 9, 9), (7, 9, 5), (6, 10, 10), (5, 10, 18), (8, 9, 1), (8, 10, 4), (9, 10, 3)]
+
+g2 = WeightedGraph(10)
+for a, b, c in l:
+    g2.add_edge(a-1, b-1, c)
+print(prim2(g2).adj)
