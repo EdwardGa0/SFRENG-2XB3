@@ -1,4 +1,6 @@
 import math
+import timeit
+
 # min heap
 class MinHeap:
     length = 0
@@ -182,7 +184,25 @@ def prim2(G):
 
 
 # prim vs prim
+def test_prims():
+    f = open('./prim_tests.txt', 'w')
+    for i in range(0, 800, 2):
+        g = create_random_connected_graph(i)
+        start = timeit.default_timer()
+        prim1(g)
+        a = timeit.default_timer() - start
+        start = timeit.default_timer()
+        prim2(g)
+        b = timeit.default_timer() - start
+        f.write(str(i) + ', ' + str(a) + ', ' + str(b) + '\n')
+    f.close()
 
+def create_random_connected_graph(n):
+    g = WeightedGraph(n)
+    l = [i for i in range(1, n + 1)]
+    for i in range(n):
+        g.add_edge(i, i + 1, l.pop(random.randint(len(l))))
+    return g
 
 
 
