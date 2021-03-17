@@ -30,3 +30,4 @@ class WeightedGraph:
 
     def number_of_nodes(self):
         return len(self.adj)
+

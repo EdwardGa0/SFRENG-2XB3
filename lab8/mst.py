@@ -18,3 +18,4 @@ def prim1(G):
         mst.add_edge(min_node, attach_to, minimum)
 
     return mst
+
