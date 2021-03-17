@@ -47,6 +47,7 @@ def prim1(G):
                     minimum = G.w(curr_node, adj_node)
                     min_node = adj_node
                     attach_to = curr_node
+	#print(min_node, attach_to)
         visited.append(min_node)
         mst.add_edge(min_node, attach_to, minimum)
 
