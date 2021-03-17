@@ -47,13 +47,12 @@ def prim1(G):
                     minimum = G.w(curr_node, adj_node)
                     min_node = adj_node
                     attach_to = curr_node
-	#print(min_node, attach_to)
         visited.append(min_node)
         mst.add_edge(min_node, attach_to, minimum)
 
     return mst
 
- = WeightedGraph(6)
+g = WeightedGraph(6)
 g.add_edge(0,1,5)
 g.add_edge(0,2,6)
 g.add_edge(1,4,10)
@@ -63,4 +62,4 @@ g.add_edge(0,5,3)
 g.add_edge(4,5,1)
 g.add_edge(3,5,9)
 
-print(prim1(g).w(1,2))
+print(prim1(g).adj)
