@@ -37,7 +37,18 @@ def init_d(G):
         d[i][i] = 0
     return d
 
+def test_mystery():
+    f = open('./mystery_tests.txt', 'w')
+    for i in range(1, 1000):
+        G = create_random_complete_graph(i, 1000)
+        start = timeit.default_timer()
+        mystery(G)
+        a = timeit.default_timer() - start
+        f.write(str(i) + ', ' + str(a) + '\n')
+    f.close()
+
 G = create_random_complete_graph(3, 5)
 print(G.weights)
 print(all_pairs_dijkstra(G))
 print(all_pairs_bellman_ford(G))
+test_mystery()
