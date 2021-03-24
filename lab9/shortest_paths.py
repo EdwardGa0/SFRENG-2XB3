@@ -223,3 +223,37 @@ def bellman_ford_approx(G, source, k):
                         pred[neighbour] = node
                         ktimes[node] += 1
     return dist
+
+#Assumes G represents its node as integers 0,1,...,(n-1)
+def mystery(G):
+    n = G.number_of_nodes()
+    d = init_d(G)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if d[i][j] > d[i][k] + d[k][j]: 
+                    d[i][j] = d[i][k] + d[k][j]
+    return d
+
+def init_d(G):
+    n = G.number_of_nodes()
+    d = [[999999 for j in range(n)] for i in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if G.are_connected(i,j):
+                d[i][j] = G.w(i,j)
+        d[i][i] = 0
+    return d
+
+# test mystery()
+G = DirectedWeightedGraph()
+G.add_node(0)
+G.add_node(1)
+G.add_node(2)
+G.add_node(3)
+G.add_edge(0, 1, -3)
+G.add_edge(0, 3, -1)
+G.add_edge(3, 1, -1)
+G.add_edge(1, 2, -1)
+
+print(mystery(G))
