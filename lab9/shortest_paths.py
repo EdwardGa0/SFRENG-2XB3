@@ -187,22 +187,15 @@ def all_pairs_dijkstra(G):
     matrix = []
     nodes = sorted(list(G.adj.keys()))
     for src in nodes:
-        lst = []
-        for i in range(len(nodes)):
-            lst.append(dijkstra(G, src).get(i))
-        matrix.append(lst)
+        matrix.append(list(dijkstra(G, src).values()))
     return matrix
 
 def all_pairs_bellman_ford(G):
     matrix = []
     nodes = sorted(list(G.adj.keys()))
     for src in nodes:
-        lst = []
-        for i in range(len(nodes)):
-            lst.append(dijkstra(G, src).get(i))
-        matrix.append(lst)
+       matrix.append(list(dijkstra(G, src).values()))
     return matrix
-
 
 
 def bellman_ford_approx(G, source, k):
