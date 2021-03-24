@@ -143,7 +143,7 @@ def dijkstra(G, source):
     pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
     dist = {} #Distance dictionary
     Q = MinHeap([])
-    nodes = list(G.adj.keys())
+    nodes = sorted(list(G.adj.keys()))
 
     #Initialize priority queue/heap and distances
     for node in nodes:
@@ -167,7 +167,7 @@ def dijkstra(G, source):
 def bellman_ford(G, source):
     pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
     dist = {} #Distance dictionary
-    nodes = list(G.adj.keys())
+    nodes = sorted(list(G.adj.keys()))
 
     #Initialize distances
     for node in nodes:
@@ -185,7 +185,7 @@ def bellman_ford(G, source):
 
 def all_pairs_dijkstra(G):
     matrix = []
-    nodes = list(G.adj.keys())
+    nodes = sorted(list(G.adj.keys()))
     for src in nodes:
         matrix.append(list(dijkstra(G, src).values()))
     return matrix
@@ -193,7 +193,7 @@ def all_pairs_dijkstra(G):
 
 def all_pairs_bellman_ford(G):
     matrix = []
-    nodes = list(G.adj.keys())
+    nodes = sorted(list(G.adj.keys()))
     for src in nodes:
         matrix.append(list(bellman_ford(G, src).values()))
     return matrix
@@ -201,7 +201,7 @@ def all_pairs_bellman_ford(G):
 def bellman_ford_approx(G, source, k):
     pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
     dist = {} #Distance dictionary
-    nodes = list(G.adj.keys())
+    nodes = sorted(list(G.adj.keys()))
 
     # Keep track of k for all nodes
     ktimes = {}
