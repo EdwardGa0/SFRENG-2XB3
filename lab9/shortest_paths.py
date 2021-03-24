@@ -142,12 +142,12 @@ class DirectedWeightedGraph:
 def dijkstra(G, source):
     pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
     dist = {} #Distance dictionary
-    Q = min_heap.MinHeap([])
+    Q = MinHeap([])
     nodes = list(G.adj.keys())
 
     #Initialize priority queue/heap and distances
     for node in nodes:
-        Q.insert(min_heap.Element(node, 99999))
+        Q.insert(Element(node, 99999))
         dist[node] = 99999
     Q.decrease_key(source, 0)
 
@@ -197,3 +197,29 @@ def all_pairs_bellman_ford(G):
     for src in nodes:
         matrix.append(list(bellman_ford(G, src).values()))
     return matrix
+
+def bellman_ford_approx(G, source, k):
+    pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
+    dist = {} #Distance dictionary
+    nodes = list(G.adj.keys())
+
+    # Keep track of k for all nodes
+    ktimes = {}
+    for node in nodes:
+        ktimes[node] = 0
+
+    #Initialize distances
+    for node in nodes:
+        dist[node] = 99999
+    dist[source] = 0
+
+    #Meat of the algorithm
+    for _ in range(G.number_of_nodes()):
+        for node in nodes:
+            for neighbour in G.adj[node]:
+                if dist[neighbour] > dist[node] + G.w(node, neighbour):
+                    if ktimes[node] <= k:
+                        dist[neighbour] = dist[node] + G.w(node, neighbour)
+                        pred[neighbour] = node
+                        ktimes[node] += 1
+    return dist
