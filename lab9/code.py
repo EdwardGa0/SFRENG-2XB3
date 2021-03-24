@@ -1,4 +1,5 @@
-import math
+import math, random, timeit
+from shortest_paths import *
 
 def total_dist(dist):
     total = 0
@@ -37,7 +38,20 @@ def init_d(G):
         d[i][i] = 0
     return d
 
-G = create_random_complete_graph(3, 5)
-print(G.weights)
-print(all_pairs_dijkstra(G))
-print(all_pairs_bellman_ford(G))
+# Bellman-Ford approx testing
+# total_d0 = 0
+# total_d1 = 1
+# k = 0
+# while k <= 50:
+#     start = timeit.default_timer()
+#     G = create_random_complete_graph(50, 1000)
+#     start = timeit.default_timer()
+#     d0 = bellman_ford(G, 1)
+#     t0 = timeit.default_timer() - start
+#     total_d0 = total_dist(d0)
+#     start = timeit.default_timer()
+#     d1 = bellman_ford_approx(G, 1, k)
+#     t1 = timeit.default_timer() - start
+#     total_d1 = total_dist(d1)
+#     print(t0, t1, total_d0, total_d1)
+#     k += 1
