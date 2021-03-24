@@ -245,15 +245,15 @@ def init_d(G):
         d[i][i] = 0
     return d
 
-# test mystery()
-G = DirectedWeightedGraph()
-G.add_node(0)
-G.add_node(1)
-G.add_node(2)
-G.add_node(3)
-G.add_edge(0, 1, -3)
-G.add_edge(0, 3, -1)
-G.add_edge(3, 1, -1)
-G.add_edge(1, 2, -1)
+# # test mystery()
+# G = DirectedWeightedGraph()
+# G.add_node(0)
+# G.add_node(1)
+# G.add_node(2)
+# G.add_node(3)
+# G.add_edge(0, 1, -3)
+# G.add_edge(0, 3, -1)
+# G.add_edge(3, 1, -1)
+# G.add_edge(1, 2, -1)
 
-print(mystery(G))
+# print(mystery(G))
