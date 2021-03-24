@@ -187,16 +187,23 @@ def all_pairs_dijkstra(G):
     matrix = []
     nodes = sorted(list(G.adj.keys()))
     for src in nodes:
-        matrix.append(list(dijkstra(G, src).values()))
+        lst = []
+        for i in range(len(nodes)):
+            lst.append(dijkstra(G, src).get(i))
+        matrix.append(lst)
     return matrix
-
 
 def all_pairs_bellman_ford(G):
     matrix = []
     nodes = sorted(list(G.adj.keys()))
     for src in nodes:
-        matrix.append(list(bellman_ford(G, src).values()))
+        lst = []
+        for i in range(len(nodes)):
+            lst.append(dijkstra(G, src).get(i))
+        matrix.append(lst)
     return matrix
+
+
 
 def bellman_ford_approx(G, source, k):
     pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
